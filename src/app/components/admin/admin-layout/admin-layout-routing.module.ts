@@ -36,7 +36,7 @@ import { AdminLayoutComponent } from './admin.layout.component';
                                 (m) => m.UserGroupsModule
                             ),
                         canActivate: [AuthGuard],
-                       data: { role: Roles.GROUP_MANAGE },
+                        data: { role: Roles.GROUP_MANAGE },
                     },
                     {
                         path: 'group-roles',
@@ -45,7 +45,7 @@ import { AdminLayoutComponent } from './admin.layout.component';
                                 (m) => m.GroupRolesModule
                             ),
                         canActivate: [AuthGuard],
-                       data: { role: Roles.GROUP_MANAGE },
+                        data: { role: Roles.GROUP_MANAGE },
                     },
                     {
                         path: 'visit-time',
@@ -77,6 +77,13 @@ import { AdminLayoutComponent } from './admin.layout.component';
                             import('../appointment/appointment.module').then(
                                 (m) => m.AppointmentModule
                             ),
+                    },
+                    {
+                        path: 'banners',
+                        loadChildren: () =>
+                            import('../banners/banners.module').then(
+                                (m) => m.BannersModule
+                            )
                     },
 
 
