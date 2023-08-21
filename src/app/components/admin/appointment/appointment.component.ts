@@ -35,7 +35,7 @@ export class AppointmentComponent implements OnInit {
         skip: 0,
         take: 40,
         status: null,
-    }
+    };
     searchForm = {
         appointmentDate: null,
         dateCreated: null,
@@ -45,7 +45,7 @@ export class AppointmentComponent implements OnInit {
         status: this.searchData.status,
         take: this.searchData.take,
         skip: this.searchData.skip,
-    }
+    };
     constructor(
         private notification: NotificationService,
         private appointmentAPI: AppointmentService,
@@ -57,7 +57,7 @@ export class AppointmentComponent implements OnInit {
             status: [null],
             node: [null],
             priority: [null]
-        })
+        });
         this.breadcrumbItem = [
             { label: 'Quản lý lịch hẹn' },
             { label: 'Danh sách lịch hẹn' },

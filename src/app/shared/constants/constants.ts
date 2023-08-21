@@ -194,7 +194,16 @@ export class Constants {
         { label: 'Chờ NV kiểm tra thông tin', value: 8 },
         { label: 'KH hủy lịch hẹn', value: 9 },
         { label: 'KH đã đến', value: 10 },
-    ]
+    ];
+
+    public static readonly BANNERS_TYPE = [
+        { label: 'Box khuyến mại', value: 1 },
+    ];
+
+    public static readonly BANNERS_ISDISABLEA = [
+        {label: 'Disabled', value: false},
+        {label: 'Enable', value: true},
+    ];
 
 
     public static readonly APPOINTMENT_PRIORITY = [
@@ -202,7 +211,7 @@ export class Constants {
         { label: 'Cao', value: 1},
         { label: 'Trung bình', value: 2},
         { label: 'Thấp', value: 3},
-    ]
+    ];
     public static readonly REPORT_EDITING_STATES = {
         READING: 1,
         APPROVING: 3,
@@ -271,7 +280,7 @@ export class Constants {
     public static readonly VALUE_OPERATION = [
         {label: 'OR', value: 1},
         {label: 'AND', value: 2},
-    ]
+    ];
 
     public static readonly SESSION = [
         {label: 'Sáng', value: 1},

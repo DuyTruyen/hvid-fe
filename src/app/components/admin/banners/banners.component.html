@@ -1,7 +1,40 @@
 <div class="grid">
-    <div class="col-12 p-0">
-        <div class="card admin-content m-0">
-            <p-breadcrumb [model]="breadcrumbItem" [home]="home" styleClass="breadcrumb-admin"></p-breadcrumb>
-        </div>
+  <div class="col-12 p-0">
+    <div class="card admin-content m-0">
+      <p-breadcrumb [model]="breadcrumbItem" [home]="home" styleClass="breadcrumb-admin"></p-breadcrumb>
+      <!--End: Title Danh sách group -->
+      <div class="flex flex-wrap column-gap-2 row-gap-6 pb-2">
+        <input type="text" class="w-full sm:w-auto p-inputtext-sm" pInputText placeholder="Tên banner" />
+        <p-dropdown placeholder="Vị trí" [style]="{ width: '180px' }" [options]="BANNERS_TYPE" class="w-full sm:w-auto p-inputtext-sm" appendTo="body" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
+        <p-dropdown placeholder="Trạng thái" [style]="{ width: '180px' }" [options]="BANNERS_ISDISABLEA" class="w-full sm:w-auto p-inputtext-sm" appendTo="body" optionLabel="label" optionValue="value" [showClear]="true"></p-dropdown>
+        <button pButton pRipple icon="pi pi-search" class="p-button-primary p-button-sm" (click)="onSearch()"></button>
+        <button pButton pRipple icon="pi pi-times" class="p-button-secondary p-button-sm" (click)="onClearSearch()"></button>
+      </div>
+
+      <m-table [isLazyLoad]="false" [cols]="cols" [items]="listItems" (selectRow)="selectItem($event)" [dataKey]="'id'" [customHeaderTemplate]="customHeaderTemplate" [customBodyTemplate]="customBodyTemplate" class="table-admin" [calcHeight]="303" (onPageChange)="onPageChange($event)" [totalRecords]="totalItemCount" [loading]="loading"></m-table>
+      <ng-template #customHeaderTemplate>
+        <th *ngFor="let col of cols; let i = index" [style.minWidth]="col['width']">
+          {{ col['header'] }}
+        </th>
+        <th [style.minWidth]="'20rem'">Ảnh</th>
+        <th [style.minWidth]="'20rem'">Vị trí</th>
+        <th [style.minWidth]="'16rem'">Trạng thái</th>
+      </ng-template>
+      <ng-template #customBodyTemplate let-rowData>
+        <td [style.minWidth]="col.width || '12rem'" *ngFor="let col of cols">
+          {{ rowData[col['field']] }}
+        </td>
+        <td [style.minWidth]="'20rem'"></td>
+        <td [style.minWidth]="'20rem'">{{ rowData.type | bannerType }}</td>
+        <td
+          class="text-center flex justify-content-evenly"
+          [ngStyle]="{
+            color: rowData.isDisabled ? 'var(--green-400)' : 'var(--red-400)'
+          }"
+        >
+          <i class="{{ rowData.isDisabled ? 'pi pi-check' : 'pi pi-ban' }}"></i>
+        </td>
+      </ng-template>
     </div>
+  </div>
 </div>
