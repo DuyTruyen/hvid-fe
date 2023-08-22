@@ -9,6 +9,7 @@ import { Roles } from './shared/constants/constants';
             [
                 {
                     path: 'login',
+                    canActivate: [],
                     loadChildren: () =>
                         import('./components/login/login.module').then(
                             (m) => m.LoginModule
