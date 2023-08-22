@@ -16,7 +16,6 @@ import { Constants } from '../../../shared/constants/constants';
 export class BannersComponent implements OnInit {
     breadcrumbItem: MenuItem[];
     home: MenuItem;
-
     listItems: any = [];
     totalItemCount = 0;
     loading = false;
@@ -25,18 +24,19 @@ export class BannersComponent implements OnInit {
     msg = "";
     bannersForm: FormGroup;
     selectedItem: any;
-
-    bannersDialogHeader = '';
-
+    selectedImg: string = '';
+    bannersDialogHeader = 'Sửa banner';
+    visibleImage: boolean = false;
+    visibleEdit: boolean = false;
+    blobChoosenFile: any = null;
     searchData = {
         skip: 0,
         take: 40,
     };
-
     searchForm = {
         type: null,
         name: '',
-        IsDisabled: null,
+        isDisabled: null,
         take: this.searchData.take,
         skip: this.searchData.skip,
     };
@@ -51,19 +51,20 @@ export class BannersComponent implements OnInit {
         private fb: FormBuilder,
     ) {
         this.bannersForm = this.fb.group({
-            id : [null],
+            id: [null],
             type: [null],
-            link: [null],
+            name: [null],
         });
-            this.breadcrumbItem = [
-                { label: 'Quản lý banners' },
-                { label: 'Danh sách banners' },
-            ];
+        this.breadcrumbItem = [
+            { label: 'Quản lý banners' },
+            { label: 'Danh sách banners' },
+        ];
 
         this.home = {
             icon: 'pi pi-home',
             routerLink: '/admin/admin-dashboard',
         };
+        this.url = 'https://hvidtest-api.pmr.vn';
     }
 
     ngOnInit(): void {
@@ -75,14 +76,13 @@ export class BannersComponent implements OnInit {
 
     search() {
         this.loading = true;
-        this.bannersAPI.getAll().subscribe({
+        this.bannersAPI.getAll(this.searchForm).subscribe({
             next: (res) => {
-                if(res.data != undefined) {
+                if (res.data != undefined) {
                     this.listItems = res.data;
-                    console.log('listItems', this.listItems);
                     this.totalItemCount = res.total;
                 } else {
-                    if( res.errors && res.errors.length > 0) {
+                    if (res.errors && res.errors.length > 0) {
                         res.errors.forEach((el: any) => {
                             this.notification.error(el.errorMessage);
                         });
@@ -96,18 +96,18 @@ export class BannersComponent implements OnInit {
         })
     }
 
-    onSearch(){
+    onSearch() {
         this.searchForm = {
             type: null,
             name: '',
-            IsDisabled: null,
+            isDisabled: null,
             take: this.searchData.take,
             skip: this.searchData.skip,
         };
         this.search();
     }
 
-    onClearSearch(){
+    onClearSearch() {
         this.searchForm.skip = 0;
         this.searchForm.take = 40;
         this.search();
@@ -121,6 +121,130 @@ export class BannersComponent implements OnInit {
         this.searchData.skip = data.first;
         this.searchData.take = data.rows;
         this.search();
+    }
+
+    showDialogImage(data: any) {
+        this.visibleImage = true;
+        this.selectedImg = data;
+    }
+
+    onEditItem(item: any) {
+        this.visibleEdit = true;
+        this.selectedItem = item;
+        this.bannersForm.patchValue({
+            id: item.id,
+            type: item.type,
+            name: item.name,
+        });
+        this.url = item.link;
+    }
+
+    updateItem() {
+        this.bannersAPI.update(this.selectedItem.id, { ...this.bannersForm.value, link: this.url }).subscribe({
+            next: (res) => {
+                if (res.ret && res.ret[0].code == 200) {
+                    this.notification.success('Cập nhật banner thành công', '');
+                    this.visibleEdit = false;
+                    this.url = '';
+                    this.search();
+                } else {
+                    if (res.errors && res.errors.length > 0) {
+                        res.errors.forEach((el: any) => {
+                            this.notification.error(el.errorMessage);
+                        });
+                    } else if (res.ret) {
+                        this.notification.error('Cập nhật bài viết không thành công! Error: ' + res.ret[0].message);
+                    } else {
+                        this.notification.error('Cập nhật bài viết không thành công! Error: unknown');
+                        console.error(res);
+                    }
+                }
+            },
+        });
+    }
+
+    doUploadImage() {
+        if (this.doUploadImage != null) {
+            this.fileUploadAPI.upload(this.blobChoosenFile).subscribe({
+                next: (res) => {
+                    if (res.filePath) {
+                        const config = this.configService.getConfig();
+                        this.url = config.api.fileUrl + '/' + res.filePath;
+                        this.updateItem();
+                    } else {
+                        this.notification.error('Upload ảnh không thành công!', (res.msg != undefined) ? res.msg : 'Unknown error.');
+                    }
+                }
+            });
+        }
+    }
+
+    onSaveItem() {
+        if (this.bannersForm.valid) {
+            if (this.blobChoosenFile != null) {
+                this.doUploadImage();
+            }
+            else {
+                this.updateItem();
+            }
+        }
+        else {
+            Object.values(this.bannersForm.controls).forEach((control) => {
+                if (control.invalid) {
+                    control.markAsDirty();
+                    control.updateValueAndValidity({ onlySelf: true });
+                }
+            });
+        }
+    }
+
+    toggleEnable(item: any) {
+        let payload = {
+            id: item.id,
+            type: item.type,
+            name: item.name,
+            link: item.link,
+            isDisabled: item.isDisabled,
+        };
+        this.bannersAPI.update(item.id, payload).subscribe({
+            next: (res) => {
+                if (res.ret && res.ret[0].code == 200) {
+                    this.notification.success(
+                        'Cập nhật trạng thái thành công',
+                        ''
+                    );
+                    this.search();
+                } else {
+                    if (res.errors && res.errors.length > 0) {
+                        res.errors.forEach((el: any) => {
+                            this.notification.error(el.errorMessage);
+                        });
+                    }
+                    else {
+                        this.notification.error('Cập nhật trạng thái không thành công');
+                    }
+                }
+            },
+        });
+    }
+
+    selectFile(event: any) {
+        if (!event.target.files[0] || event.target.files[0].length == 0) {
+            this.msg = 'You must select an image';
+            return;
+        }
+        let mimeType = event.target.files[0].type;
+        if (mimeType.match(/image\/*/) == null) {
+            this.msg = "Only images are supported";
+            return;
+        }
+        this.blobChoosenFile = event.target.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = (_event) => {
+            this.msg = "";
+            this.url = reader.result;
+        }
     }
 
 }

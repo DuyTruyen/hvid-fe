@@ -10,6 +10,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { PipeModule } from '../../../shared/pipes/pipe.module';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { DropdownModule } from 'primeng/dropdown';
         ButtonModule,
         PipeModule,
         DropdownModule,
+        InputSwitchModule,
     ]
 })
 export class BannersModule { }
