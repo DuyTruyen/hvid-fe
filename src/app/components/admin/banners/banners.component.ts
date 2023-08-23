@@ -42,6 +42,7 @@ export class BannersComponent implements OnInit {
     };
     BANNERS_TYPE = Constants.BANNERS_TYPE;
     BANNERS_ISDISABLEA = Constants.BANNERS_ISDISABLEA;
+    baseURL: any = '';
 
     constructor(
         private bannersAPI: BannersService,
@@ -64,7 +65,6 @@ export class BannersComponent implements OnInit {
             icon: 'pi pi-home',
             routerLink: '/admin/admin-dashboard',
         };
-        this.url = 'https://hvidtest-api.pmr.vn';
     }
 
     ngOnInit(): void {
@@ -137,10 +137,13 @@ export class BannersComponent implements OnInit {
             name: item.name,
         });
         this.url = item.link;
+        const prefixToRemove = "https://hvidtest-api.pmr.vn/";
+        const remainingPart = this.url.replace(prefixToRemove, "");
+        this.baseURL = remainingPart;
     }
 
     updateItem() {
-        this.bannersAPI.update(this.selectedItem.id, { ...this.bannersForm.value, link: this.url }).subscribe({
+        this.bannersAPI.update(this.selectedItem.id, { ...this.bannersForm.value, link: this.baseURL }).subscribe({
             next: (res) => {
                 if (res.ret && res.ret[0].code == 200) {
                     this.notification.success('Cập nhật banner thành công', '');
