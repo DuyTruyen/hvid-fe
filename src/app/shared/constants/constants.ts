@@ -5,10 +5,10 @@ export class Constants {
         PAGE_SIZE: 40,
     };
     public static readonly LAYOUT_CONFIG = {
-         DEFAULT_FULL : 1,
-         DEFAULT_DUAL : 2,
-         VT : 3,
-         INIT: 99
+        DEFAULT_FULL: 1,
+        DEFAULT_DUAL: 2,
+        VT: 3,
+        INIT: 99
     };
     public static readonly ACTIONS = {
         EDIT: 0,
@@ -72,14 +72,14 @@ export class Constants {
     public static readonly DATA_TYPES = [
         { name: 'Number', code: 'NUM', keyValue: 1 },
         { name: 'Range', code: 'RAG', keyValue: 2 },
-        { name: 'Boolean', code: 'BOOL', keyValue: 3},
+        { name: 'Boolean', code: 'BOOL', keyValue: 3 },
         { name: 'String', code: 'STR', keyValue: 4 },
         { name: 'Time', code: 'TIME', keyValue: 5 },
         { name: 'Date', code: 'DATE', keyValue: 6 },
         { name: 'DateTime', code: 'DATETI', keyValue: 7 },
         { name: 'SingleChoice', code: 'SINGC', keyValue: 8 },
         { name: 'MultipleChoice', code: 'MULC', keyValue: 9 },
-        { name: 'Image', code: 'IMAGE', keyValue: 12},
+        { name: 'Image', code: 'IMAGE', keyValue: 12 },
     ];
     public static readonly LABELING_MODE = [
         {
@@ -201,16 +201,16 @@ export class Constants {
     ];
 
     public static readonly BANNERS_ISDISABLEA = [
-        {label: 'Disabled', value: false},
-        {label: 'Enable', value: true},
+        { label: 'Disabled', value: false },
+        { label: 'Enable', value: true },
     ];
 
 
     public static readonly APPOINTMENT_PRIORITY = [
-        { label: 'Not set', value: 0},
-        { label: 'Cao', value: 1},
-        { label: 'Trung bình', value: 2},
-        { label: 'Thấp', value: 3},
+        { label: 'Not set', value: 0 },
+        { label: 'Cao', value: 1 },
+        { label: 'Trung bình', value: 2 },
+        { label: 'Thấp', value: 3 },
     ];
     public static readonly REPORT_EDITING_STATES = {
         READING: 1,
@@ -233,35 +233,35 @@ export class Constants {
     ];
 
     public static readonly HISTORY_LOG = [
-        { label: 'Tất cả', value: null},
-        { label: 'Ca khám', value: 1},
-        { label: 'Nhận chỉ định', value: 6},
-        { label: 'Thêm ca thăm khám', value: 11},
-        { label: 'Cập nhật ca thăm khám', value: 12},
-        { label: 'Đọc kết quả', value: 41},
-        { label: 'Duyệt kết quả', value: 42},
-        { label: 'Tải lên Key Image', value: 31},
-        { label: 'Tạo Key Image', value: 32},
-        { label: 'Tự động tải lên', value: 5},
-        { label: 'Key image', value: 3},
-        { label: 'Thêm báo cáo', value: 4},
-        { label: 'Tạo key image', value: 33},
+        { label: 'Tất cả', value: null },
+        { label: 'Ca khám', value: 1 },
+        { label: 'Nhận chỉ định', value: 6 },
+        { label: 'Thêm ca thăm khám', value: 11 },
+        { label: 'Cập nhật ca thăm khám', value: 12 },
+        { label: 'Đọc kết quả', value: 41 },
+        { label: 'Duyệt kết quả', value: 42 },
+        { label: 'Tải lên Key Image', value: 31 },
+        { label: 'Tạo Key Image', value: 32 },
+        { label: 'Tự động tải lên', value: 5 },
+        { label: 'Key image', value: 3 },
+        { label: 'Thêm báo cáo', value: 4 },
+        { label: 'Tạo key image', value: 33 },
     ];
 
 
     public static readonly VALUE_FILTERS = [
-        {label: 'Tên bệnh nhân', value: 'patientName', type: Constants.FILTER_TYPES.STRING , values: []},
-        {label: 'Mã bệnh nhân', value: 'patientCode', type: Constants.FILTER_TYPES.STRING, values: []},
-        {label: 'Mã bệnh phẩm', value: 'specimensCode', type: Constants.FILTER_TYPES.STRING, values: []},
-        {label: 'Loại yêu cầu', value: 'requestType', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.REQUEST_TYPES},
-        {label: 'Trạng thái', value: 'status', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.REPORT_STATES},
-        {label: 'Thời gian tạo', value: 'from', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.TIME_RANGE_FILTER},
-        {label: 'Kết luận', value: 'conclusion', type: Constants.FILTER_TYPES.STRING, values: []},
-        {label: 'Chẩn đoán', value: 'diagnose', type: Constants.FILTER_TYPES.STRING, values: []},
-        {label: 'Đã chụp', value: 'hasSlide', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.FILTER_STATES_1},
-        {label: 'Đã đọc', value: 'hasConclusion', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.FILTER_STATES_2},
-        {label: 'Đã duyệt', value: 'isApprove', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.FILTER_STATES_3},
-        {label: 'Đã in', value: 'isPrint', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.FILTER_STATES_4},
+        { label: 'Tên bệnh nhân', value: 'patientName', type: Constants.FILTER_TYPES.STRING, values: [] },
+        { label: 'Mã bệnh nhân', value: 'patientCode', type: Constants.FILTER_TYPES.STRING, values: [] },
+        { label: 'Mã bệnh phẩm', value: 'specimensCode', type: Constants.FILTER_TYPES.STRING, values: [] },
+        { label: 'Loại yêu cầu', value: 'requestType', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.REQUEST_TYPES },
+        { label: 'Trạng thái', value: 'status', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.REPORT_STATES },
+        { label: 'Thời gian tạo', value: 'from', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.TIME_RANGE_FILTER },
+        { label: 'Kết luận', value: 'conclusion', type: Constants.FILTER_TYPES.STRING, values: [] },
+        { label: 'Chẩn đoán', value: 'diagnose', type: Constants.FILTER_TYPES.STRING, values: [] },
+        { label: 'Đã chụp', value: 'hasSlide', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.FILTER_STATES_1 },
+        { label: 'Đã đọc', value: 'hasConclusion', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.FILTER_STATES_2 },
+        { label: 'Đã duyệt', value: 'isApprove', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.FILTER_STATES_3 },
+        { label: 'Đã in', value: 'isPrint', type: Constants.FILTER_TYPES.DROPDOWN, values: Constants.FILTER_STATES_4 },
     ];
 
     public static readonly VALUE_SORTS = [
@@ -278,28 +278,20 @@ export class Constants {
     ];
 
     public static readonly VALUE_OPERATION = [
-        {label: 'OR', value: 1},
-        {label: 'AND', value: 2},
+        { label: 'OR', value: 1 },
+        { label: 'AND', value: 2 },
     ];
 
     public static readonly SESSION = [
-        {label: 'Sáng', value: 1},
-        {label: 'Chiều', value: 2},
+        { label: 'Sáng', value: 1 },
+        { label: 'Chiều', value: 2 },
     ]
 }
 export class StorageKeys {
     public static readonly TOKEN = 'token';
     public static readonly USER = 'user';
-    public static readonly ADMIN_DASHBOARD = "admin";
-    public static readonly LAYOUT = 'dps-layout';
-    public static readonly PAPSMEAR_WORKLIST_SPLIT = 'dps-pasmear-worklist-split';
-    public static readonly VT_WORKLIST_SPLIT = 'dps-VT-worklist-split-new';
-    public static readonly LOGIN_FAIL = "Incorrect username and/or password.";
-}
-
-export enum GridType{
-    MAIN = 1,
-    PAPSmear = 2
+    public static readonly ADMIN_DASHBOARD = 'admin';
+    public static readonly LOGIN_FAIL = 'Incorrect username and/or password.';
 }
 
 export class Roles {
@@ -307,37 +299,4 @@ export class Roles {
     public static readonly USER_MANAGE = 2;
     public static readonly GROUP_MANAGE = 3;
     public static readonly CUSTOMER = 100;
-
-
 }
-// export class Roles {
-//     public static readonly TECHNICIAN = "Kỹ thuật viên";
-//     //   public static readonly DOCTOR = "Bác sĩ";
-//     public static readonly DOCTOR_READ = "Bác sĩ đọc";
-//     public static readonly DOCTOR_APPROVE = "Bác sĩ duyệt";
-//     //   public static readonly DOCTOR_WATCH = "Bác sĩ xem";
-//     //   public static readonly ORDER_DOCTOR = "Bác sĩ chỉ định";
-//     public static readonly ADMIN = "admin";
-//     //   public static readonly DEMO = "Demo";
-//     public static readonly MANAGER = "Quản lý";
-//     //   public static readonly UPDATECASESTUDY = "Sửa thông tin ca chụp";
-//     //   public static readonly REMOTE_READ_DOCTOR = "Bác sĩ đọc từ xa";
-//     //   public static readonly REQUEST_REMOTE_READ = "Yêu cầu đọc từ xa";
-//     //   public static readonly ASSIGN = "Assign";
-//     public static readonly MANAGE_BRANCH = "Quản lý branch";
-//     public static readonly USER_ACTIVITY_LOG = "Quản lý lịch sử hoạt động";
-//     public static readonly MANAGE_USER = "Quản lý user";
-//     public static readonly MANAGE_GROUP = "Quản lý group user";
-//     public static readonly MANAGE_CATEGORY = "Quản lý danh mục";
-//     public static readonly MANAGE_TEMPLATE = "Quản lý mẫu báo cáo / mẫu in";
-//     public static readonly MANAGE_MARKTYPE = "Quản lý phương pháp nhuộm";
-//     //   public static readonly MANAGE_CS_STATUS = "Quản lý trạng trái ca chụp";
-//     public static readonly MANAGE_ASSIGN_DOCTOR = "Quản lý DS BS chỉ định";
-//     //   public static readonly MANAGE_CS_LOG = "Quản lý log ca chụp";
-//     public static readonly SHARE_CASESTUDY = "Share ca chụp";
-//     public static readonly SYSTEM_CONFIG = "Cấu hình hệ thống";
-//     //   public static readonly EDIT_AFTER_PRINT = "Sửa kết quả khi in";
-//     public static readonly DELETE_CASESTUDY = "Xóa Ca Khám";
-//     public static readonly DELETE_SLIDE = "Xóa Slide";
-//     public static readonly REVIEW_LABEL = "Review gán nhãn";
-// }
