@@ -137,13 +137,13 @@ export class BannersComponent implements OnInit {
             name: item.name,
         });
         this.url = item.link;
-        const prefixToRemove = "https://hvidtest-api.pmr.vn/";
-        const remainingPart = this.url.replace(prefixToRemove, "");
-        this.baseURL = remainingPart;
+        this.baseURL = item.link;
     }
 
     updateItem() {
-        this.bannersAPI.update(this.selectedItem.id, { ...this.bannersForm.value, link: this.baseURL }).subscribe({
+        const urlWithoutPrefix = this.baseURL.replace(/^https?:\/\/[^/]+/, '');
+        console.log('urlRemotehttps',urlWithoutPrefix);//đừng xóa
+        this.bannersAPI.update(this.selectedItem.id, { ...this.bannersForm.value, link: urlWithoutPrefix }).subscribe({
             next: (res) => {
                 if (res.ret && res.ret[0].code == 200) {
                     this.notification.success('Cập nhật banner thành công', '');
