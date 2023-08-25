@@ -38,7 +38,7 @@
         </td>
       </ng-template>
       <p-dialog [(visible)]="visibleImage">
-        <img *ngIf="selectedItem" [src]="selectedItem" alt="Selected Image" />
+        <img *ngIf="selectedImg" [src]="selectedImg" alt="Selected Image" />
       </p-dialog>
     </div>
     <p-dialog [(visible)]="visibleEdit" [style]="{ width: '40rem' }" [modal]="true" [header]="bannersDialogHeader" class="p-fluid">
