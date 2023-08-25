@@ -137,13 +137,13 @@ export class BannersComponent implements OnInit {
             name: item.name,
         });
         this.url = item.link;
-        this.baseURL = item.link;
+        // this.baseURL = item.link;
     }
 
     updateItem() {
-        const urlWithoutPrefix = this.baseURL.replace(/^https?:\/\/[^/]+/, '');
-        console.log('urlRemotehttps',urlWithoutPrefix);//đừng xóa
-        this.bannersAPI.update(this.selectedItem.id, { ...this.bannersForm.value, link: urlWithoutPrefix }).subscribe({
+        // const urlWithoutPrefix = this.baseURL.replace(/^https?:\/\/[^/]+/, '');
+        // console.log('urlRemotehttps',urlWithoutPrefix);//đừng xóa
+        this.bannersAPI.update(this.selectedItem.id, { ...this.bannersForm.value, link: this.url }).subscribe({
             next: (res) => {
                 if (res.ret && res.ret[0].code == 200) {
                     this.notification.success('Cập nhật banner thành công', '');
