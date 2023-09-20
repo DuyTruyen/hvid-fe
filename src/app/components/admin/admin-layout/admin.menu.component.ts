@@ -120,11 +120,11 @@ export class AdminMenuComponent implements OnInit {
                     },
                     {
                         label: 'Quản lý banners',
-                        icon: 'pi pi-stop',
+                        icon: 'pi pi-image',
                         items: [
                             {
                                 label: 'Danh sách banners',
-                                icon: 'pi pi-stop',
+                                icon: 'pi pi-image',
                                 routerLink: ['/banners'],
                             }
                         ]

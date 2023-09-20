@@ -27,7 +27,7 @@
           {{ rowData[col['field']] }}
         </td>
         <td [style.minWidth]="'20rem'" (click)="showDialogImage(rowData.link)">
-          <img *ngIf="rowData.link !== null" [src]="rowData.link" alt="Image" style="max-height: 50px; max-width: 100px; margin: 0 auto" />
+          <img *ngIf="rowData.link !== null" [src]="basefileUrl+ '/'+rowData.link" alt="Image" style="max-height: 50px; max-width: 100px; margin: 0 auto" />
         </td>
         <td [style.minWidth]="'20rem'">{{ rowData.type | bannerType }}</td>
         <td class="text-center flex justify-content-center">
@@ -61,7 +61,7 @@
               </div>
             </div>
             <div class="col-6 text-center flex justify-content-left">
-              <img [src]="url" *ngIf="url" style="max-height: 150px; max-width: 240px; margin: 0 auto" />
+              <img [src]="basefileUrl+ '/'+url" *ngIf="url" style="max-height: 150px; max-width: 240px; margin: 0 auto" />
             </div>
           </div>
         </form>
